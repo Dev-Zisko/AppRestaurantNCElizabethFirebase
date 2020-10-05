@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'TITLES.reservation' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+  <ion-item class="ion-text-center" color="dark">
+    <ion-label>{{ 'RESERVATION.make' | translate }}</ion-label>
+  </ion-item>
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-footer *ngIf="isLogged == 'true' ">
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.name' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" name="name" disabled>{{ name }}</ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.phone' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" name="number" disabled>{{ number }}</ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.email' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="email" name="email" disabled>{{ emailAuth }}</ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.people' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" [(ngModel)]="reservation.people" name="people"></ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'RESERVATION.date' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" min="{{ today | date: 'yyyy-MM-dd' }}" [(ngModel)]="date" name="date"></ion-datetime>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'RESERVATION.hour' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime displayFormat="HH:mm" [(ngModel)]="hour" name="hour"></ion-datetime>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.message' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-textarea [(ngModel)]="reservation.comment" name="comment"></ion-textarea>
+          </ion-item>
+        </ion-footer>
+      <ion-footer *ngIf="isLogged == 'false' ">
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.name' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" [(ngModel)]="reservation.name" name="name"></ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.phone' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" [(ngModel)]="reservation.number" name="number"></ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.email' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="email" [(ngModel)]="reservation.email" name="email"></ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.people' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" [(ngModel)]="reservation.people" name="people"></ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'RESERVATION.date' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" min="{{ today | date: 'yyyy-MM-dd' }}" [(ngModel)]="date" name="date"></ion-datetime>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'RESERVATION.hour' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime displayFormat="HH:mm" [(ngModel)]="hour" name="hour"></ion-datetime>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.message' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-textarea [(ngModel)]="reservation.comment" name="comment"></ion-textarea>
+          </ion-item>
+      </ion-footer>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button class="ion-margin" expand="block" type="submit" (click)="addReservation()">{{ 'RESERVATION.send' | translate }}</ion-button>
+    </div>
+</ion-content>

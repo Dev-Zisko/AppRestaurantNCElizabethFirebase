@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'TITLES.login' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding" color="dark">
+  <ion-item class="ion-text-center" color="dark">
+    <ion-label>{{ 'LOGIN.title' | translate }}</ion-label>
+  </ion-item>
+
+  <ion-item color="dark">
+    <ion-label position="stacked">{{ 'LOGIN.email' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input required type="email" [(ngModel)]="user.email" name="email" class="form-control"></ion-input>
+  </ion-item>
+
+  <ion-item color="dark">
+    <ion-label position="stacked">{{ 'LOGIN.password' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input required type="password" [(ngModel)]="user.password" name="password" class="form-control"></ion-input>
+  </ion-item>
+
+  <div class="ion-padding">
+    <ion-button class="ion-margin" expand="block" type="submit" 
+    routerDirection="forward" (click)="tryLogin()">{{ 'LOGIN.login' | translate }}</ion-button>
+  </div>
+
+  <ion-item class="ion-text-center" color="dark">
+    <ion-label style="text-decoration: underline; color: #0094FF;" routerLink='/menu/third/password'>{{ 'LOGIN.forgotPassword' | translate }}</ion-label>
+  </ion-item>
+
+</ion-content>

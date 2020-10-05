@@ -1,0 +1,74 @@
+<ion-split-pane (click)="statusLogged()">
+  <ion-menu contentId="content">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>{{ 'SIDEMENU.main' | translate }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content color="primary">
+      <ion-item color="dark">
+        <ion-label>{{ 'SIDEMENU.languages' | translate }}</ion-label>
+        <ion-toggle color="primary" slot="start" [(ngModel)]="notify" (ngModelChange)="select($event)"></ion-toggle>
+      </ion-item>
+
+      <ion-footer *ngIf="isLogged != 'false' && isLogged != 'true' ">
+        <ion-item color="dark">
+          <ion-icon name="arrow-round-down" slot="end"></ion-icon>
+          <ion-label>{{ 'SIDEMENU.menu' | translate }}</ion-label>
+        </ion-item>
+      </ion-footer>
+
+      <ion-footer *ngIf="isLogged == 'false' ">
+          <ion-menu-toggle auto-hide="false" *ngFor="let page of pagesnotLogged">
+              <ion-item color="dark" [routerLink]="page.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(page.url)">
+                <ion-icon name="home" slot="start" *ngIf=" page.title == 'Home' "></ion-icon>
+                <ion-label *ngIf=" page.title == 'Home' ">{{ 'SIDEMENU.home' | translate }}</ion-label>
+                <ion-icon name="person" slot="start" *ngIf=" page.title == 'Registro' "></ion-icon>
+                <ion-label *ngIf=" page.title == 'Registro' ">{{ 'SIDEMENU.register' | translate }}</ion-label>
+                <ion-icon name="log-in" slot="start" *ngIf=" page.title == 'Login' "></ion-icon>
+                <ion-label *ngIf=" page.title == 'Login' ">{{ 'SIDEMENU.login' | translate }}</ion-label>
+              </ion-item>
+          </ion-menu-toggle>
+        </ion-footer>
+        
+        <ion-footer *ngIf="isLogged == 'true' ">
+          <ion-footer *ngFor="let client of (clients | async)">
+              <ion-footer *ngIf="isLogged == 'true' && client.rol == 'User'">
+                <ion-menu-toggle auto-hide="false" *ngFor="let page of pagesLogged">
+                  <ion-item color="dark" [routerLink]="page.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(page.url)">
+                    <ion-icon name="home" slot="start" *ngIf=" page.title == 'Home' "></ion-icon>
+                    <ion-label *ngIf=" page.title == 'Home' ">{{ 'SIDEMENU.home' | translate }}</ion-label>
+                    <ion-icon name="mail-open" slot="start" *ngIf=" page.title == 'Mis mensajes' "></ion-icon>
+                    <ion-label *ngIf=" page.title == 'Mis mensajes' ">{{ 'SIDEMENU.messages' | translate }}</ion-label>
+                    <ion-icon name="contact" slot="start" *ngIf=" page.title == 'Mi perfil' "></ion-icon>
+                    <ion-label *ngIf=" page.title == 'Mi perfil' ">{{ 'SIDEMENU.profile' | translate }}</ion-label>
+                    <ion-icon name="log-out" slot="start" *ngIf=" page.title == 'Salir' "></ion-icon>
+                    <ion-label *ngIf=" page.title == 'Salir' " (click)="tryLogout()">{{ 'SIDEMENU.logout' | translate }}</ion-label>
+                  </ion-item>
+              </ion-menu-toggle>
+            </ion-footer>
+          </ion-footer>
+        </ion-footer>
+
+        <ion-footer *ngIf="isLogged == 'true' ">
+          <ion-footer *ngFor="let client of (clients | async)">
+            <ion-footer *ngIf="isLogged == 'true' && client.rol == 'Admin'">
+                <ion-menu-toggle auto-hide="false" *ngFor="let page of pagesLoggedAdmin">
+                  <ion-item color="dark" [routerLink]="page.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(page.url)">
+                    <ion-icon name="home" slot="start" *ngIf=" page.title == 'Home' "></ion-icon>
+                    <ion-label *ngIf=" page.title == 'Home' ">{{ 'SIDEMENU.home' | translate }}</ion-label>
+                    <ion-icon name="clipboard" slot="start" *ngIf=" page.title == 'Dashboard' "></ion-icon>
+                    <ion-label *ngIf=" page.title == 'Dashboard' ">Dashboard</ion-label>
+                    <ion-icon name="log-out" slot="start" *ngIf=" page.title == 'Salir' "></ion-icon>
+                    <ion-label *ngIf=" page.title == 'Salir' " (click)="tryLogout()">{{ 'SIDEMENU.logout' | translate }}</ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+            </ion-footer>
+          </ion-footer>
+        </ion-footer>
+      <img style="width: 100%; height: 200px; margin-top: 25%;" src="http://www.nochesdecolombiaelizabeth.com/wp-content/themes/nochestheme/assets/images/noches-de-colombia-logo.png" />
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content" main></ion-router-outlet>
+</ion-split-pane>

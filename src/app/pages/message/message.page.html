@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'TITLES.reservation' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+    <ion-item class="ion-text-center" color="dark">
+      <ion-label>{{ 'RESERVATION.title' | translate }}</ion-label>
+    </ion-item>
+    <ion-footer *ngFor="let reservation of (reservations | async)">
+      <ion-item-sliding>
+        <ion-item color="dark" button [routerLink]="['/sdreservation', reservation.id]"
+          *ngIf="reservation.email == emailAuth">
+          <ion-label>{{ reservation.date }} {{ reservation.hour}}</ion-label>
+          <ion-note slot="end" *ngIf="reservation.status == 'Verde'" color="success">
+              {{ 'RESPONSERESERVATION.aprove' | translate }}</ion-note>
+          <ion-note slot="end" *ngIf="reservation.status == 'Rojo'" color="danger">
+              {{ 'RESPONSERESERVATION.reject' | translate }}</ion-note>
+          <ion-note slot="end" *ngIf="reservation.status == ''" color="warning">
+              {{ 'RESPONSERESERVATION.noAnswer' | translate }}</ion-note>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-footer>
+</ion-content>

@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaulthref=""></ion-back-button>
+      </ion-buttons>
+    <ion-title>{{ 'TITLES.events' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+  <ion-footer *ngFor="let client of (clients | async)">
+    <ion-footer *ngIf="isLogged == 'true' && client.rol == 'Admin'">
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'EDITEVENT.pageName' | translate }}</ion-label>
+      </ion-item>
+
+      <ion-item class="ion-margin" color="dark">
+        <ion-label>{{ 'CREATEFOOD.category' | translate }}</ion-label>
+        <ion-select interface="popover" [(ngModel)]="event.kind" name="kind">
+          <ion-select-option value="Destacado">{{ 'FOOD.feature' | translate }}</ion-select-option>
+          <ion-footer *ngFor="let category of (categories | async)">
+            <ion-select-option *ngIf="category.kind == 'Eventos'" value="{{ category.name }}">
+            {{ category.name }}</ion-select-option>
+          </ion-footer>
+        </ion-select>
+      </ion-item>
+
+      <ion-footer *ngIf="event.kind != 'Destacado'">
+          <ion-item class="ion-margin" color="dark">
+              <ion-label>{{ 'CREATEEVENT.day' | translate }}</ion-label>
+              <ion-select interface="popover" [(ngModel)]="event.day" name="day">
+                <ion-select-option value="a.Lunes">{{ 'CREATESPECIAL.monday' | translate }}</ion-select-option>
+                <ion-select-option value="b.Martes">{{ 'CREATESPECIAL.tuesday' | translate }}</ion-select-option>
+                <ion-select-option value="c.Miércoles">{{ 'CREATESPECIAL.wednesday' | translate }}</ion-select-option>
+                <ion-select-option value="d.Jueves">{{ 'CREATESPECIAL.thursday' | translate }}</ion-select-option>
+                <ion-select-option value="e.Viernes">{{ 'CREATESPECIAL.friday' | translate }}</ion-select-option>
+                <ion-select-option value="f.Sábado">{{ 'CREATESPECIAL.saturday' | translate }}</ion-select-option>
+                <ion-select-option value="g.Domingo">{{ 'CREATESPECIAL.sunday' | translate }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+        </ion-footer>
+
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item color="dark">
+          <ion-label position="stacked">{{ 'EDITEVENT.title' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" [(ngModel)]="event.title" name="title"></ion-input>
+        </ion-item>
+
+        <ion-footer *ngIf="event.kind == 'Destacado'">
+          <ion-item color="dark">
+            <ion-label>{{ 'EDITEVENT.udate' | translate }}</ion-label>
+            <ion-toggle color="primary" slot="start" [(ngModel)]="notify1" (ngModelChange)="select1($event)"></ion-toggle>
+          </ion-item>
+        
+        <ion-footer *ngIf=" udate == 'false' ">
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'EDITEVENT.date' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime disabled="true" displayFormat="MM/DD/YYYY" min="{{ today | date: 'yyyy-MM-dd' }}" [(ngModel)]="event.date" name="date"></ion-datetime>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'EDITEVENT.hour' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime disabled="true" displayFormat="HH:mm" [(ngModel)]="event.hour" name="hour"></ion-datetime>
+          </ion-item>
+        </ion-footer>
+
+        <ion-footer *ngIf=" udate == 'true' ">
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'EDITEVENT.date' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" min="{{ today | date: 'yyyy-MM-dd' }}" [(ngModel)]="date" name="date"></ion-datetime>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'EDITEVENT.hour' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime displayFormat="HH:mm" [(ngModel)]="hour" name="hour"></ion-datetime>
+          </ion-item>
+        </ion-footer>
+      </ion-footer>
+
+        <ion-item color="dark">
+          <ion-label position="stacked">{{ 'EDITEVENT.description' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-textarea required [(ngModel)]="event.description" name="description"></ion-textarea>
+        </ion-item>
+
+        <ion-item color="dark">
+          <ion-label>{{ 'EDITEVENT.upload' | translate }}</ion-label>
+          <ion-toggle color="primary" slot="start" [(ngModel)]="notify" (ngModelChange)="select($event)"></ion-toggle>
+        </ion-item>
+
+        <ion-footer *ngIf=" upload == 'true' ">
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'EDITEVENT.image' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="file" (change)="onUpload($event)"></ion-input>
+          </ion-item>
+        </ion-footer>
+
+        <ion-item color="dark">
+          <ion-label position="stacked">{{ 'EDITEVENT.progress' | translate }} {{ uploadPercent | async }} %</ion-label>
+        </ion-item>
+        <ion-input type="hidden" [value]="urlImage | async" [(ngModel)]="image" name="image"></ion-input>
+      </ion-list>
+
+      <ion-footer *ngIf="event.id">
+        <div class="ion-padding">
+          <ion-button class="ion-margin" expand="block" (click)="updateEvent()">{{ 'EDITEVENT.save' | translate }}</ion-button>
+        </div>
+      </ion-footer>
+    </ion-footer>
+  </ion-footer>
+
+</ion-content>

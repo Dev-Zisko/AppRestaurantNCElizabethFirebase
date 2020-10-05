@@ -1,0 +1,8 @@
+{
+  "name": "mpm0001",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

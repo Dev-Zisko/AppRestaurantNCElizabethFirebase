@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'TITLES.events' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+  <ion-footer *ngIf="category == ''">
+      <p class="ion-margin ion-padding" style="text-align: center;">{{ 'TITLES.select' | translate }}:</p>
+    </ion-footer>
+    <ion-item class="ion-margin" color="dark">
+      <ion-label>{{ 'FOOD.category' | translate }}</ion-label>
+      <ion-select interface="popover" [(ngModel)]="category" name="category">
+        <ion-select-option value="Destacado">{{ 'FOOD.feature' | translate }}</ion-select-option>
+        <ion-footer *ngFor="let category of (categories | async)">
+          <ion-select-option *ngIf="category.kind == 'Eventos'" value="{{ category.name }}">
+          {{ category.name }}</ion-select-option>
+        </ion-footer>
+      </ion-select>
+    </ion-item>
+
+    <ion-footer *ngIf=" category == 'Destacado'">
+      <ion-footer *ngFor="let event of (events | async)">
+        <ion-footer *ngIf="event.kind == 'Destacado' && event.kind == category">
+          <ion-card color="medium"> 
+            <img src="{{ event.image }}" />
+            <ion-card-header>
+              <ion-card-subtitle>{{ event.title }}</ion-card-subtitle>
+              <ion-card-title>{{ event.description}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              {{ 'CREATEEVENT.date' | translate }}: {{ event.date }} {{ event.hour }} Hrs
+            </ion-card-content>
+          </ion-card>
+        </ion-footer>
+      </ion-footer>
+    </ion-footer>
+    <ion-footer *ngIf=" category != 'Destacado'">
+      <ion-footer *ngFor="let event1 of (events1 | async)">
+        <ion-footer *ngIf="event1.kind != 'Destacado' && event1.kind == category">
+          <ion-footer *ngIf="event1.day == 'a.Lunes'">
+            <ion-item class="ion-text-center" color="dark">
+              <ion-label>{{ 'SPECIAL.days.monday' | translate }}</ion-label>
+            </ion-item>
+          </ion-footer>
+          <ion-footer *ngIf="event1.day == 'b.Martes'">
+              <ion-item class="ion-text-center" color="dark">
+                  <ion-label>{{ 'SPECIAL.days.tuesday' | translate }}</ion-label>
+                </ion-item>
+          </ion-footer>
+          <ion-footer *ngIf="event1.day == 'c.Miércoles'">
+              <ion-item class="ion-text-center" color="dark">
+                  <ion-label>{{ 'SPECIAL.days.wednesday' | translate }}</ion-label>
+                </ion-item>
+          </ion-footer>
+          <ion-footer *ngIf="event1.day == 'd.Jueves'">
+              <ion-item class="ion-text-center" color="dark">
+                  <ion-label>{{ 'SPECIAL.days.thursday' | translate }}</ion-label>
+                </ion-item>
+          </ion-footer>
+          <ion-footer *ngIf="event1.day == 'e.Viernes'">
+              <ion-item class="ion-text-center" color="dark">
+                  <ion-label>{{ 'SPECIAL.days.friday' | translate }}</ion-label>
+                </ion-item>
+          </ion-footer>
+          <ion-footer *ngIf="event1.day == 'f.Sábado'">
+              <ion-item class="ion-text-center" color="dark">
+                  <ion-label>{{ 'SPECIAL.days.saturday' | translate }}</ion-label>
+                </ion-item>
+          </ion-footer>
+          <ion-footer *ngIf="event1.day == 'g.Domingo'">
+              <ion-item class="ion-text-center" color="dark">
+                  <ion-label>{{ 'SPECIAL.days.sunday' | translate }}</ion-label>
+                </ion-item>
+          </ion-footer>
+          <ion-card color="medium"> 
+            <img src="{{ event1.image }}" />
+            <ion-card-header>
+              <ion-card-subtitle>{{ event1.title }}</ion-card-subtitle>
+              <ion-card-title>{{ event1.description}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              {{ event1.kind }}
+            </ion-card-content>
+          </ion-card>
+      </ion-footer>
+      </ion-footer>
+    </ion-footer>
+</ion-content>

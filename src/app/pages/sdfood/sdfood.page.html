@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaulthref=""></ion-back-button>
+  </ion-buttons>
+    <ion-title>{{ 'FOOD.detail' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+    <ion-card color="medium"> 
+      <img src="{{ food.image }}" />
+      <ion-card-header>
+        <ion-card-subtitle>{{ food.title }}</ion-card-subtitle>
+        <ion-card-title>$ {{ food.price }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ food.description }}
+        <ion-footer *ngIf=" food.companions != '0' ">
+          <h3>{{ 'TITLES.companions' | translate }} {{ food.companions }}</h3>
+        </ion-footer>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

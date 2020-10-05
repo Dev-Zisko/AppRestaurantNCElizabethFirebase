@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'TITLES.profile' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+  <ion-item class="ion-text-center" color="dark">
+    <ion-label>{{ 'REGISTER.edit' | translate }}</ion-label>
+  </ion-item>
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-footer *ngIf="isLogged == 'true' ">
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.name' | translate }}: {{ name }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" [(ngModel)]="user.name" name="name"></ion-input>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'RESERVATION.phone' | translate }}: {{ number }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" [(ngModel)]="user.number" name="number"></ion-input>
+          </ion-item>
+      </ion-footer>
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button class="ion-margin" expand="block" type="submit" (click)="updateUser()">{{ 'PROFILE.save' | translate }}</ion-button>
+    </div>
+</ion-content>

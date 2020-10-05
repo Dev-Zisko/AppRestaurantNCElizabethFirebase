@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">NochesElizabeth</string>
+    <string name="title_activity_main">NochesElizabeth</string>
+    <string name="package_name">nc.elizabeth.logic</string>
+    <string name="custom_url_scheme">nc.elizabeth.logic</string>
+</resources>

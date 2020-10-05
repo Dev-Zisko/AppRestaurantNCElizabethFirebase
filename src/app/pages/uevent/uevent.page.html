@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button defaulthref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'TITLES.events' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+  <ion-footer *ngFor="let client of (clients | async)">
+    <ion-footer *ngIf="isLogged == 'true' && client.rol == 'Admin'">
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'EDITEVENT.choose' | translate }}</ion-label>
+      </ion-item>
+
+      <ion-item-sliding>
+        <ion-item color="dark" button [routerLink]="['/menu/third/dashboard/eevent', event.id]" 
+          *ngFor="let event of (events | async)">
+          <ion-footer *ngIf="event.kind != 'Destacado'">
+            <ion-label>{{ event.title }}</ion-label>
+            <ion-note slot="end" color="warning">{{ event.day }}</ion-note>
+          </ion-footer>
+          <ion-footer *ngIf="event.kind == 'Destacado'">
+            <ion-label>{{ event.title }}</ion-label>
+            <ion-note slot="end" color="warning">{{ event.date }}</ion-note>
+          </ion-footer> 
+        </ion-item>
+      </ion-item-sliding>
+    </ion-footer>
+  </ion-footer>
+</ion-content>

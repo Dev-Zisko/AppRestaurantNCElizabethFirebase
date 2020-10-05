@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaulthref=""></ion-back-button>
+      </ion-buttons>
+    <ion-title>{{ 'TITLES.food' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content class="ion-padding" color="dark">
+  <ion-footer *ngFor="let client of (clients | async)">
+    <ion-footer *ngIf="isLogged == 'true' && client.rol == 'Admin'">
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'DELETEFOOD.pageName' | translate }}</ion-label>
+      </ion-item>
+
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item color="dark">
+          <ion-label position="stacked">{{ 'DELETEFOOD.title' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" disabled="true" [(ngModel)]="food.title" name="title"></ion-input>
+        </ion-item>
+
+        <ion-item color="dark">
+          <ion-label position="stacked">{{ 'DELETEFOOD.category' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" disabled="true" [(ngModel)]="food.kind" name="kind"></ion-input>
+        </ion-item>
+
+        <ion-item color="dark">
+            <ion-label position="stacked">{{ 'DELETEFOOD.description' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-textarea required disabled="true" [(ngModel)]="food.description" name="description"></ion-textarea>
+          </ion-item>
+
+        <ion-item color="dark">
+            <ion-label position="stacked">{{ 'DELETEFOOD.price' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="number" disabled="true" [(ngModel)]="food.price" name="price"></ion-input>
+        </ion-item>
+
+        <ion-item color="dark">
+          <ion-label position="stacked">{{ 'TITLES.companions' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" disabled="true" [(ngModel)]="food.companions" name="companions"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-footer *ngIf="food.id">
+        <div class="ion-padding">
+          <ion-button class="ion-margin" expand="block" (click)="deleteFood()">{{ 'DELETEFOOD.delete' | translate }}</ion-button>
+        </div>
+      </ion-footer>
+    </ion-footer>
+  </ion-footer>
+
+</ion-content>
+    

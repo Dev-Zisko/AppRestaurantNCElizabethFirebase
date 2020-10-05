@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'TITLES.register' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+  <ion-item class="ion-text-center" color="dark">
+    <ion-label>{{ 'REGISTER.title' | translate }}</ion-label>
+  </ion-item>
+
+  <ion-item color="dark">
+    <ion-label position="stacked">{{ 'REGISTER.name' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input required type="text" [(ngModel)]="user.name" name="name" class="form-control" required></ion-input>
+  </ion-item>
+
+  <ion-item color="dark">
+    <ion-label position="stacked">{{ 'REGISTER.phone' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input required type="number" [(ngModel)]="user.number" name="number" class="form-control" required></ion-input>
+  </ion-item>
+
+  <ion-item color="dark">
+    <ion-label position="stacked">{{ 'REGISTER.email' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input required type="email" [(ngModel)]="user.email" name="email" class="form-control" required></ion-input>
+  </ion-item>
+
+  <ion-item color="dark">
+    <ion-label position="stacked">{{ 'REGISTER.password' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input required type="password" [(ngModel)]="user.password" name="password" class="form-control" required></ion-input>
+  </ion-item>
+
+  <ion-item color="dark">
+    <ion-label position="stacked">{{ 'REGISTER.confirmPassword' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input required type="password" class="form-control" [(ngModel)]="repassword" name="repassword" required></ion-input>
+  </ion-item>
+
+  <ion-footer *ngIf="!user.id">
+    <div class="ion-padding">
+      <ion-button class="ion-margin" expand="block" type="submit" (click)="tryRegister()">
+        {{ 'REGISTER.register' | translate }}</ion-button>
+    </div>
+  </ion-footer>
+</ion-content>

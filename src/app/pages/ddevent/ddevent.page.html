@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaulthref=""></ion-back-button>
+      </ion-buttons>
+    <ion-title>{{ 'TITLES.events' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content class="ion-padding" color="dark">
+  <ion-footer *ngFor="let client of (clients | async)">
+    <ion-footer *ngIf="isLogged == 'true' && client.rol == 'Admin'">
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'DELETEEVENT.pageName' | translate }}</ion-label>
+      </ion-item>
+
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item color="dark">
+          <ion-label position="stacked">{{ 'DELETEEVENT.title' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" disabled="true" [(ngModel)]="event.title" name="title"></ion-input>
+        </ion-item>
+
+        <ion-item color="dark">
+            <ion-label position="stacked">{{ 'CREATEFOOD.category' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" disabled="true" [(ngModel)]="event.kind" name="kind"></ion-input>
+          </ion-item>
+
+        <ion-footer *ngIf="event.kind != 'Destacado'">
+          <ion-item color="dark">
+            <ion-label position="stacked">{{ 'CREATEEVENT.day' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input required type="text" disabled="true" [(ngModel)]="event.day" name="day"></ion-input>
+          </ion-item>
+        </ion-footer>
+        
+        <ion-footer *ngIf="event.kind == 'Destacado'">
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'DELETEEVENT.date' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime disabled="true" displayFormat="MM/DD/YYYY" [(ngModel)]="event.date" name="date"></ion-datetime>
+          </ion-item>
+
+          <ion-item color="dark">
+            <ion-label position="floating">{{ 'DELETEEVENT.time' | translate }}<ion-text color="danger">*</ion-text></ion-label>
+            <ion-datetime disabled="true" displayFormat="HH:mm" [(ngModel)]="event.hour" name="hour"></ion-datetime>
+          </ion-item>
+        </ion-footer>
+
+        <ion-item color="dark">
+          <ion-label position="stacked">{{ 'DELETEEVENT.description' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-textarea required disabled="true" [(ngModel)]="event.description" name="description"></ion-textarea>
+        </ion-item>
+      </ion-list>
+
+      <ion-footer *ngIf="event.id">
+        <div class="ion-padding">
+          <ion-button class="ion-margin" expand="block" (click)="deleteEvent()">{{ 'DELETEEVENT.delete' | translate }}</ion-button>
+        </div>
+      </ion-footer>
+    </ion-footer>
+  </ion-footer>
+
+</ion-content>
+  

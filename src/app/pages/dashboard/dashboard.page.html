@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+  <ion-footer *ngFor="let client of (clients | async)">
+    <ion-footer *ngIf="isLogged == 'true' && client.rol == 'Admin'">
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'DASHBOARD.events' | translate }}</ion-label>
+      </ion-item>
+      <section>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/revent" 
+        routerDirection="forward"><ion-icon name="add" slot="start"></ion-icon>{{ 'DASHBOARD.createEvent' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/uevent" 
+        routerDirection="forward"><ion-icon name="paper" slot="start"></ion-icon>{{ 'DASHBOARD.editEvent' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/devent" 
+        routerDirection="forward"><ion-icon name="trash" slot="start"></ion-icon>{{ 'DASHBOARD.deleteEvent' | translate }}</ion-button>
+      </section>
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'DASHBOARD.category' | translate }}</ion-label>
+      </ion-item>
+      <section>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/rcategory" 
+        routerDirection="forward"><ion-icon name="add" slot="start"></ion-icon>{{ 'DASHBOARD.createCategory' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/ucategory" 
+        routerDirection="forward"><ion-icon name="paper" slot="start"></ion-icon>{{ 'DASHBOARD.editCategory' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/dcategory" 
+        routerDirection="forward"><ion-icon name="trash" slot="start"></ion-icon>{{ 'DASHBOARD.deleteCategory' | translate }}</ion-button>
+      </section>
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'DASHBOARD.food' | translate }}</ion-label>
+      </ion-item>
+      <section>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/rfood" 
+        routerDirection="forward"><ion-icon name="add" slot="start"></ion-icon>{{ 'DASHBOARD.createFood' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/ufood" 
+        routerDirection="forward"><ion-icon name="paper" slot="start"></ion-icon>{{ 'DASHBOARD.editFood' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/dfood" 
+        routerDirection="forward"><ion-icon name="trash" slot="start"></ion-icon>{{ 'DASHBOARD.deleteFood' | translate }}</ion-button>
+      </section>
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'DASHBOARD.special' | translate }}</ion-label>
+      </ion-item>
+      <section>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/rspecial" 
+        routerDirection="forward"><ion-icon name="add" slot="start"></ion-icon>{{ 'DASHBOARD.createSpecial' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/uspecial" 
+        routerDirection="forward"><ion-icon name="paper" slot="start"></ion-icon>{{ 'DASHBOARD.editSpecial' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/dspecial" 
+        routerDirection="forward"><ion-icon name="trash" slot="start"></ion-icon>{{ 'DASHBOARD.deleteSpecial' | translate }}</ion-button>
+      </section>
+      <ion-item class="ion-text-center" color="dark">
+        <ion-label>{{ 'DASHBOARD.reservation' | translate }}</ion-label>
+      </ion-item>
+      <section>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/sreservation" 
+        routerDirection="forward"><ion-icon name="eye" slot="start"></ion-icon>{{ 'DASHBOARD.watchReservation' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/areservation" 
+        routerDirection="forward"><ion-icon name="chatboxes" slot="start"></ion-icon>{{ 'DASHBOARD.responseReservation' | translate }}</ion-button>
+        <ion-button class="ion-margin" expand="block" routerLink="/menu/third/dashboard/dreservation" 
+        routerDirection="forward"><ion-icon name="trash" slot="start"></ion-icon>{{ 'DASHBOARD.deleteReservation' | translate }}</ion-button>
+      </section>
+    </ion-footer>
+  </ion-footer>
+  <ion-item class="ion-text-center" color="dark">
+    <ion-label>{{ 'DASHBOARD.logOut' | translate }}</ion-label>
+  </ion-item>
+  <section>
+      <ion-button class="ion-margin" expand="block" routerLink="/menu/first/tabs/tab">
+        <ion-icon name="log-out" slot="start"></ion-icon>{{ 'DASHBOARD.exit' | translate }}</ion-button>
+  </section>
+</ion-content>

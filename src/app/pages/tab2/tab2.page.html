@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'TITLES.food' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+  <ion-footer *ngIf="category == ''">
+    <p class="ion-margin ion-padding" style="text-align: center;">{{ 'TITLES.select' | translate }}:</p>
+  </ion-footer>
+  <ion-item class="ion-margin" color="dark">
+    <ion-label>{{ 'FOOD.category' | translate }}</ion-label>
+    <ion-select interface="popover" [(ngModel)]="category" name="category">
+      <ion-footer *ngFor="let category of (categories | async)">
+        <ion-select-option *ngIf="category.kind == 'Comidas'" value="{{ category.name }}">
+        {{ category.name }}</ion-select-option>
+      </ion-footer>
+    </ion-select>
+  </ion-item>
+  <ion-footer *ngFor="let food of (foods | async)">
+    <ion-item color="dark"  color="medium" *ngIf="food.kind == category" button [routerLink]="['sdfood', food.id]">
+        <ion-avatar slot="start">
+          <img src="{{food.image}}">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ food.title }}</h2>
+          <h3>{{ food.description }}</h3>
+          <ion-footer *ngIf=" food.companions != '0' ">
+            <h3>{{ 'TITLES.companions' | translate }} {{ food.companions }}</h3>
+          </ion-footer>
+          <p>$ {{ food.price }}</p>
+        </ion-label>
+    </ion-item>
+  </ion-footer>
+</ion-content>

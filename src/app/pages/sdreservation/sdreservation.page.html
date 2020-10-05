@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaulthref=""></ion-back-button>
+          </ion-buttons>
+      <ion-title>{{ 'TITLES.reservation' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding" color="dark">
+  <ion-item class="ion-text-center" color="dark">
+    <ion-label>{{ 'RESERVATION.detail' | translate }}</ion-label>
+  </ion-item>
+  <form class="ion-margin" onsubmit="">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item color="dark">
+        <ion-label position="stacked">{{ 'RESERVATION.name' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" [(ngModel)]="reservation.name" name="name" disabled></ion-input>
+      </ion-item>
+  
+      <ion-item color="dark">
+        <ion-label position="stacked">{{ 'RESERVATION.phone' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="number" [(ngModel)]="reservation.number" name="number" disabled></ion-input>
+      </ion-item>
+  
+      <ion-item color="dark"> 
+        <ion-label position="stacked">{{ 'RESERVATION.email' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="email" [(ngModel)]="reservation.email" name="email" disabled></ion-input>
+      </ion-item>
+  
+      <ion-item color="dark">
+        <ion-label position="stacked">{{ 'RESERVATION.people' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="number" [(ngModel)]="reservation.people" name="people" disabled></ion-input>
+      </ion-item>
+  
+      <ion-item color="dark">
+        <ion-label position="stacked">{{ 'RESERVATION.date' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" [(ngModel)]="reservation.date" name="date" disabled></ion-input>
+      </ion-item>
+  
+      <ion-item color="dark">
+          <ion-label position="stacked">{{ 'RESERVATION.hour' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required type="text" [(ngModel)]="reservation.hour" name="hour" disabled></ion-input>
+        </ion-item>
+  
+      <ion-item color="dark">
+        <ion-label position="stacked">{{ 'RESERVATION.message' | translate }} <ion-text color="danger">*</ion-text></ion-label>
+        <ion-textarea [(ngModel)]="reservation.comment" name="comment" disabled></ion-textarea>
+      </ion-item>
+    </ion-list>
+  
+    <ion-item class="ion-margin" color="dark">
+      <ion-label position="stacked">{{ 'RESERVATION.answer' | translate }}</ion-label>
+      <ion-input required type="text" *ngIf="reservation.status == ''"
+        disabled>{{ 'RESERVATION.noAnswer' | translate }}</ion-input>
+      <ion-input required type="text" *ngIf="reservation.status == 'Verde'" name="status" disabled>
+          {{ 'RESERVATION.aprove' | translate }}</ion-input>
+      <ion-input required type="text" *ngIf="reservation.status == 'Rojo'" name="status" disabled>
+          {{ 'RESERVATION.reject' | translate }}</ion-input>
+    </ion-item>
+  </form>
+  </ion-content>
